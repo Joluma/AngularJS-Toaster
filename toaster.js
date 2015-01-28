@@ -147,6 +147,9 @@ function ($parse, $rootScope, $interval, $sce, toasterConfig, toaster, toasterRe
             };
 
             function addToast(toast) {
+                if (mergedConfig['clear-before-open'])
+                    $rootScope.$emit('toaster-clearToasts');
+
                 toast.type = mergedConfig['icon-classes'][toast.type];
                 if (!toast.type)
                     toast.type = mergedConfig['icon-class'];
